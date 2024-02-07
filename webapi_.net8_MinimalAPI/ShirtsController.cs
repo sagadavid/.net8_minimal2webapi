@@ -13,16 +13,16 @@ namespace webapi_.net8_MinimalAPI
             return "getting from controller";
         }
 
-        [HttpGet("{id}/{color}")]
+        [HttpGet("{id}")]
         //[Route("/shirts/{id}")]
-        public string GetShirtBy(int id, [FromRoute] string color)
+        public string GetShirtBy(int id)
         {
-            return $"getting shirt id {id} and color {color} from controller";
+            return $"getting shirt id {id} from controller";
         }
 
         [HttpPost]
         //[Route("/shirts")]
-        public string CreateShirt([FromBody]ShirtModel shirt)
+        public string CreateShirt([FromForm]ShirtModel shirt)
         {
             return $"creating shirts from controller";
         }
