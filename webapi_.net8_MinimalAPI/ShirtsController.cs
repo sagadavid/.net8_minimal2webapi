@@ -9,15 +9,15 @@ namespace webapi_.net8_MinimalAPI
     {
         [HttpGet]
         //[Route("/shirts")]
-        public string GetShirts() {
+        public string GetAllShirts() {
             return "getting from controller";
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}/{color}")]
         //[Route("/shirts/{id}")]
-        public string GetShirtById(int id)
+        public string GetShirtById(int id, string color)
         {
-            return $"getting shirt id {id} from controller";
+            return $"getting shirt id {id} and color {color} from controller";
         }
 
         [HttpPost]
