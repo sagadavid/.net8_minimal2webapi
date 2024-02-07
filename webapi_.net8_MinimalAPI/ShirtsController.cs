@@ -15,7 +15,7 @@ namespace webapi_.net8_MinimalAPI
 
         [HttpGet("{id}/{color}")]
         //[Route("/shirts/{id}")]
-        public string GetShirtById(int id, [FromRoute] string color)
+        public string GetShirtBy(int id, [FromQuery] string color)
         {
             return $"getting shirt id {id} and color {color} from controller";
         }
@@ -29,7 +29,7 @@ namespace webapi_.net8_MinimalAPI
 
         [HttpPut("{id}")]
         //[Route("/shirts/{id}")]
-        public string UpdateShirts(int id)
+        public string UpdateShirtBy(int id)
         {
             return $"updating shirt id {id} from controller";
 
@@ -37,7 +37,7 @@ namespace webapi_.net8_MinimalAPI
 
         [HttpDelete("{id}")]
         //[Route("/shirts/{id}")]
-        public string DeleteShirt(int id)
+        public string DeleteShirtBy(int id)
         {
             return $"deleting shirt {id} from controller";
         }
