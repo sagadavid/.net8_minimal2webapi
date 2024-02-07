@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace webapi_.net8_MinimalAPI
 {
     [ApiController]
-    [Route("[Controller]")]
+    [Route("api/[Controller]")]
     public class ShirtsController : ControllerBase
     {
         [HttpGet]
