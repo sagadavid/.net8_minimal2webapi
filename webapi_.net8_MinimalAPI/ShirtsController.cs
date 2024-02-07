@@ -15,7 +15,7 @@ namespace webapi_.net8_MinimalAPI
 
         [HttpGet("{id}/{color}")]
         //[Route("/shirts/{id}")]
-        public string GetShirtById(int id, string color)
+        public string GetShirtById(int id, [FromRoute] string color)
         {
             return $"getting shirt id {id} and color {color} from controller";
         }
