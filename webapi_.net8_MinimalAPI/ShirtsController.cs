@@ -24,6 +24,7 @@ namespace webapi_.net8_MinimalAPI
         [HttpGet("{id}")]
         public IActionResult GetShirtBy(int id)
         {
+            if (id <=0) { return  BadRequest(); }
             var shirtById= shirts.FirstOrDefault(x=>x.Id == id);
             if (shirtById == null)
                 return NotFound();
