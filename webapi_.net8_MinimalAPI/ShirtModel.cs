@@ -10,7 +10,8 @@ namespace webapi_.net8_MinimalAPI
         public string? Color { get; set; }
         public string? Gender { get; set; }
         [Required]
-        public string? Size { get; set; }    
+        [CustomValidationSize]
+        public int? Size { get; set; }    
         public double Price { get; set; }
 
     }
