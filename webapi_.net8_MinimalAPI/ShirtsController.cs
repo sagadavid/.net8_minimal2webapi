@@ -22,9 +22,12 @@ namespace webapi_.net8_MinimalAPI
         }
 
         [HttpGet("{id}")]
-        public ShirtModel GetShirtBy(int id)
+        public IActionResult GetShirtBy(int id)
         {
-            return shirts.First(x=>x.Id == id);
+            var shirtById= shirts.FirstOrDefault(x=>x.Id == id);
+            if (shirtById == null)
+                return NotFound();
+            return Ok(shirtById);
             
         }
 
