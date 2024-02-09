@@ -16,5 +16,9 @@
         }
 
         public static ShirtModel? GetShirtModelById (int id) { return shirts.FirstOrDefault(x=>x.Id==id); }
+
+        public static List<ShirtModel> GetShirtModel() { return shirts; }
+
+
     }
 }

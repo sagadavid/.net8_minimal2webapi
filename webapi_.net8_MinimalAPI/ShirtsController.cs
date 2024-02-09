@@ -9,8 +9,8 @@ namespace webapi_.net8_MinimalAPI
     {
 
         [HttpGet]
-        public string GetAllShirts() {
-            return "getting from controller";
+        public IActionResult GetAllShirts() {
+            return Ok(Repository.GetShirtModel());
         }
 
         [HttpGet("{id}")]
