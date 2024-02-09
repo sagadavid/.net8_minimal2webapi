@@ -14,13 +14,11 @@ namespace webapi_.net8_MinimalAPI
         }
 
         [HttpGet("{id}")]
+        [ActionFilter_IdValidation]
         public IActionResult GetShirtBy(int id)
         {
-            if (id <=0) { return  BadRequest(); }
-            var shirtById= Repository.GetShirtModelById(id);
-            if (shirtById == null)
-                return NotFound();
-            return Ok(shirtById);
+           
+            return Ok(Repository.GetShirtModelById(id));
             
         }
 

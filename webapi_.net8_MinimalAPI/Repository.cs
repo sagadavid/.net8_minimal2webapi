@@ -10,7 +10,7 @@
            new ShirtModel { Id = 4, Brand = "Komansi", Color="Yellowish", Gender="Female", Price=21, Size=4}
         };
 
-        public static bool isExist (int id)
+        public static bool shirtExists (int id)
         {
             return shirts.Any(x => x.Id == id);
         }
