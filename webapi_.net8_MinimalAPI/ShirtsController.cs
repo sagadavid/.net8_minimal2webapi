@@ -19,13 +19,19 @@ namespace webapi_.net8_MinimalAPI
         {
            
             return Ok(Repository.GetShirtModelById(id));
-            
+             
         }
 
         [HttpPost]
-        public string CreateShirt([FromForm]ShirtModel shirt)
+        public IActionResult CreateShirt([FromBody]ShirtModel shirt)//reminder! post as json
         {
-            return $"creating shirts from controller";
+            if (shirt == null) { return BadRequest(); }
+            var alreadyExist = Repository.GetShirtByProperties
+                (shirt.Brand, shirt.Color, shirt.Gender, shirt.Size);
+            if (alreadyExist != null) { return BadRequest(); }
+            Repository.AddShirts(shirt);
+            return CreatedAtAction(nameof(GetShirtBy), new { id = shirt.Id }, shirt);
+            
         }
 
         [HttpPut("{id}")]

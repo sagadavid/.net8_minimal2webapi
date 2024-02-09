@@ -10,15 +10,41 @@
            new ShirtModel { Id = 4, Brand = "Komansi", Color="Yellowish", Gender="Female", Price=21, Size=4}
         };
 
-        public static bool shirtExists (int id)
+        public static bool shirtExists(int id)
         {
             return shirts.Any(x => x.Id == id);
         }
 
-        public static ShirtModel? GetShirtModelById (int id) { return shirts.FirstOrDefault(x=>x.Id==id); }
+        public static ShirtModel? GetShirtModelById(int id) { return shirts.FirstOrDefault(x => x.Id == id); }
 
         public static List<ShirtModel> GetShirtModel() { return shirts; }
 
+        public static void AddShirts(ShirtModel shirt)
+        {
+            var maxId = shirts.Max(x => x.Id);
+            shirt.Id = maxId + 1;
+            shirts.Add(shirt);
+        }
 
+        public static ShirtModel? GetShirtByProperties
+            (string? brand, string? color, string? gender, int? size)
+        {
+            return shirts.FirstOrDefault
+                (x =>
+            !string.IsNullOrWhiteSpace(brand) &&
+            !string.IsNullOrWhiteSpace(x.Brand) &&
+            x.Brand.Equals(brand, StringComparison.OrdinalIgnoreCase)
+            &&
+            !string.IsNullOrWhiteSpace(color) &&
+            !string.IsNullOrWhiteSpace(x.Color) &&
+            x.Color.Equals(color, StringComparison.OrdinalIgnoreCase)
+            &&
+            !string.IsNullOrWhiteSpace(gender) &&
+            !string.IsNullOrWhiteSpace(x.Gender) &&
+            x.Gender.Equals(gender, StringComparison.OrdinalIgnoreCase)
+            &&
+            size.HasValue && x.Size.HasValue &&
+            size.Value == x.Size.Value);
+        }
     }
 }
