@@ -8,14 +8,6 @@ namespace webapi_.net8_MinimalAPI
     public class ShirtsController : ControllerBase
     {
 
-        private List<ShirtModel> shirts = new List<ShirtModel>()
-        {
-        new ShirtModel { Id = 1, Brand = "Matsumi", Color="Greenish", Gender="Female", Price=21, Size=5},
-         new ShirtModel { Id = 2, Brand = "Takusaki", Color="Purple", Gender="Male", Price=21, Size=6},
-          new ShirtModel { Id = 3, Brand = "Finsuta", Color="Blue", Gender="Male", Price=21, Size=9},
-           new ShirtModel { Id = 4, Brand = "Komansi", Color="Yellowish", Gender="Female", Price=21, Size=4}
-        };
-
         [HttpGet]
         public string GetAllShirts() {
             return "getting from controller";
@@ -25,7 +17,7 @@ namespace webapi_.net8_MinimalAPI
         public IActionResult GetShirtBy(int id)
         {
             if (id <=0) { return  BadRequest(); }
-            var shirtById= shirts.FirstOrDefault(x=>x.Id == id);
+            var shirtById= Repository.GetShirtModelById(id);
             if (shirtById == null)
                 return NotFound();
             return Ok(shirtById);
