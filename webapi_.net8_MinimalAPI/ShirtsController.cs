@@ -33,9 +33,9 @@ namespace webapi_.net8_MinimalAPI
 
         [HttpPut("{id}")]
         [ActionFilter_IdValidation]
+        [ActionFilter_IdOnUpdateValidation]
         public IActionResult UpdateShirtBy(int id, ShirtModel shirt)
         {
-            if (id != shirt.Id) { return BadRequest(); }
             try { Repository.UpdateShirt(shirt); }
             catch { if (!Repository.shirtExists(id)) { return NotFound(); } throw; }//incase shirt is deleted earlier
             //return NoContent();
