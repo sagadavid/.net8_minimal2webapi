@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace webapi_.net8_MinimalAPI
+namespace webapi_.net8_MinimalAPI.ActionFilters
 {
     public class ActionFilter_ShirtValidation : ActionFilterAttribute
     {
@@ -15,7 +15,7 @@ namespace webapi_.net8_MinimalAPI
             if (shirtInAction == null)
             {
 
-                context.ModelState.AddModelError("shirt", "shirt is null here");
+                context.ModelState.AddModelError("shirt", "actionfilter on shirtValidation: shirt is null here");
                 var problemDetails = new ValidationProblemDetails(context.ModelState)
                 {
                     Status = StatusCodes.Status400BadRequest
@@ -29,9 +29,9 @@ namespace webapi_.net8_MinimalAPI
 
                 var alreadyExist = Repository.GetShirtByProperties
                         (shirtInAction.Brand, shirtInAction.Color, shirtInAction.Gender, shirtInAction.Size);
-                if (alreadyExist != null) 
+                if (alreadyExist != null)
                 {
-                    context.ModelState.AddModelError("shirt", "shirt already exist");
+                    context.ModelState.AddModelError("shirt", "actionfilter on shirtValidation: shirt already exist");
                     var problemDetails = new ValidationProblemDetails(context.ModelState)
                     {
                         Status = StatusCodes.Status400BadRequest

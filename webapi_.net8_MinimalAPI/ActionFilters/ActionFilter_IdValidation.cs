@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace webapi_.net8_MinimalAPI
+namespace webapi_.net8_MinimalAPI.ActionFilters
 {
     public class ActionFilter_IdValidation : ActionFilterAttribute
     {
@@ -9,12 +9,12 @@ namespace webapi_.net8_MinimalAPI
         {
             base.OnActionExecuting(context);
 
-            var idInAction=context.ActionArguments["id"] as int?;
+            var idInAction = context.ActionArguments["id"] as int?;
             if (idInAction.HasValue)
             {
                 if (idInAction.Value <= 0)
                 {
-                    context.ModelState.AddModelError("id", "shirt id value is invalid");
+                    context.ModelState.AddModelError("id", "actionfilter on idValidation: shirt id value is invalid");
                     var problemDetails = new ValidationProblemDetails(context.ModelState)
                     {
                         Status = StatusCodes.Status400BadRequest
@@ -24,7 +24,7 @@ namespace webapi_.net8_MinimalAPI
 
                 else if (!Repository.shirtExists(idInAction.Value))
                 {
-                    context.ModelState.AddModelError("id", "shirt doesnt exist");
+                    context.ModelState.AddModelError("id", "actionfilter on idValidation: shirt doesnt exist");
                     var problemDetails = new ValidationProblemDetails(context.ModelState)
                     {
                         Status = StatusCodes.Status404NotFound
