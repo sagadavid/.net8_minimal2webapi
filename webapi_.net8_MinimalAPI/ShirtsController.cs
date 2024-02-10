@@ -23,12 +23,9 @@ namespace webapi_.net8_MinimalAPI
         }
 
         [HttpPost]
+        [ActionFilter_ShirtValidation]
         public IActionResult CreateShirt([FromBody]ShirtModel shirt)//reminder! post as json
         {
-            if (shirt == null) { return BadRequest(); }
-            var alreadyExist = Repository.GetShirtByProperties
-                (shirt.Brand, shirt.Color, shirt.Gender, shirt.Size);
-            if (alreadyExist != null) { return BadRequest(); }
             Repository.AddShirts(shirt);
             return CreatedAtAction(nameof(GetShirtBy), new { id = shirt.Id }, shirt);
             
