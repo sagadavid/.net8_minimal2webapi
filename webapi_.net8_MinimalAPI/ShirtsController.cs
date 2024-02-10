@@ -32,6 +32,7 @@ namespace webapi_.net8_MinimalAPI
         }
 
         [HttpPut("{id}")]
+        [ActionFilter_IdValidation]
         public IActionResult UpdateShirtBy(int id, ShirtModel shirt)
         {
             if (id != shirt.Id) { return BadRequest(); }
