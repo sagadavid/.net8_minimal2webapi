@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-namespace webapi_.net8_MinimalAPI
+namespace webapi_.net8_MinimalAPI.ExceptionFilters
 {
     public class Handle_UpdateExceptions : ExceptionFilterAttribute
     {
@@ -22,12 +22,12 @@ namespace webapi_.net8_MinimalAPI
                 }
             }
 
-            
 
-        
-        
-        
-        
+
+
+
+
+
         }
     }
 }

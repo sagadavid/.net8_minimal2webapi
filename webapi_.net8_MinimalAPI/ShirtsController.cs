@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webapi_.net8_MinimalAPI.ActionFilters;
+using webapi_.net8_MinimalAPI.ExceptionFilters;
 
 namespace webapi_.net8_MinimalAPI
 {
@@ -47,9 +48,12 @@ namespace webapi_.net8_MinimalAPI
         }
 
         [HttpDelete("{id}")]
-        public string DeleteShirtBy(int id)
+        [ActionFilter_IdValidation]
+        public IActionResult DeleteShirtBy(int id)
         {
-            return $"deleting shirt {id} from controller";
+            var shirtToDeleteCalled = Repository.GetShirtModelById(id);//called just to return in Ok
+            Repository.DeleteShirt(id);
+            return Ok(new { message = "deletion success", shirtToDeleteCalled });
         }
         
     }

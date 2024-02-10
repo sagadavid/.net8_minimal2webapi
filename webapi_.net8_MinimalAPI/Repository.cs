@@ -57,8 +57,17 @@ namespace webapi_.net8_MinimalAPI
             shirtToUpdate.Color = shirt.Color;
             shirtToUpdate.Price = shirt.Price;
             shirtToUpdate.Size = shirt.Size;
-            
-        
         }
+
+        public static void DeleteShirt(int id)
+        { 
+        var shirtToDelete = GetShirtModelById(id);
+            if (shirtToDelete != null)
+            {
+                shirts.Remove(shirtToDelete);
+            }
+        }
+
+      
     }
 }
