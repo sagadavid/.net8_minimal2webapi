@@ -1,4 +1,6 @@
-﻿namespace webapi_.net8_MinimalAPI
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+
+namespace webapi_.net8_MinimalAPI
 {
     public static class Repository
     {
@@ -45,6 +47,18 @@
             &&
             size.HasValue && x.Size.HasValue &&
             size.Value == x.Size.Value);
+        }
+
+        public static void UpdateShirt(ShirtModel shirt)
+        { 
+        var shirtToUpdate = shirts.First(x=> x.Id == shirt.Id); 
+        shirtToUpdate.Brand = shirt.Brand;
+            shirtToUpdate.Gender = shirt.Gender;
+            shirtToUpdate.Color = shirt.Color;
+            shirtToUpdate.Price = shirt.Price;
+            shirtToUpdate.Size = shirt.Size;
+            
+        
         }
     }
 }

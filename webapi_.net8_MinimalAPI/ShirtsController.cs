@@ -32,9 +32,15 @@ namespace webapi_.net8_MinimalAPI
         }
 
         [HttpPut("{id}")]
-        public string UpdateShirtBy(int id)
+        public IActionResult UpdateShirtBy(int id, ShirtModel shirt)
         {
-            return $"updating shirt id {id} from controller";
+            if (id != shirt.Id) { return BadRequest(); }
+            try { Repository.UpdateShirt(shirt); }
+            catch { if (!Repository.shirtExists(id)) { return NotFound(); } throw; }//incase shirt is deleted earlier
+            //return NoContent();
+            return Ok(new { message = "updated successfully", shirt });
+
+        
 
         }
 
